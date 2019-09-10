@@ -8,17 +8,32 @@
         <div class="login-box"></div>
       </div>
       <!-- 登陆的表达 -->
-      <div class="input-grop" :class="{active:act_index===1}">
+      <div class="input-grop" :class="{ active: act_index === 1 }">
         <label for="cm_code">公司编号：</label>
-        <input @focus="act_index=1" type="number" id="cm_code" v-model="cm_code">
+        <input
+          @focus="act_index = 1"
+          type="number"
+          id="cm_code"
+          v-model="cm_code"
+        />
       </div>
-      <div class="input-grop" :class="{active:act_index===2}">
+      <div class="input-grop" :class="{ active: act_index === 2 }">
         <label for="cm_code">员工编号：</label>
-        <input @focus="act_index=2" type="number" id="PNO" v-model="cm_code">
+        <input
+          @focus="act_index = 2"
+          type="number"
+          id="PNO"
+          v-model="cm_code"
+        />
       </div>
-      <div class="input-grop" :class="{active:act_index===3}">
+      <div class="input-grop" :class="{ active: act_index === 3 }">
         <label for="cm_code">用户密码：</label>
-        <input @focus="act_index=3" type="number" id="Passw" v-model="cm_code">
+        <input
+          @focus="act_index = 3"
+          type="number"
+          id="Passw"
+          v-model="cm_code"
+        />
       </div>
     </div>
   </div>
@@ -28,11 +43,11 @@
 export default {
   data() {
     return {
-      act_index:1,
-      cm_code:"",
-    }
+      act_index: 1,
+      cm_code: ""
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -48,22 +63,22 @@ export default {
     line-height: px2rem(36);
     color: #fff;
   }
-  .top-hat{
+  .top-hat {
     width: px2rem(537);
     height: px2rem(18);
     background-color: #eee;
     margin: 0 auto;
     border-radius: px2rem(18) px2rem(18) 0 0;
   }
-  .longin-box{
+  .longin-box {
     width: px2rem(680);
     height: px2rem(836);
     margin: 0 auto;
     border-radius: px2rem(20);
     background-color: #fff;
-    .login-wrap{
+    .login-wrap {
       padding: px2rem(80) 0;
-      .login-box{
+      .login-box {
         width: px2rem(190);
         height: px2rem(190);
         margin: 0 auto;
@@ -71,8 +86,8 @@ export default {
         background-size: cover;
       }
     }
-    .input-grop{
-      border:px2rem(2) solid #e2e2e2;
+    .input-grop {
+      border: px2rem(2) solid #e2e2e2;
       border-radius: px2rem(45);
       font-size: $text-size-mid;
       line-height: px2rem(90);
@@ -80,15 +95,19 @@ export default {
       color: $text-color;
       width: px2rem(401);
       margin: 0 auto px2rem(30);
-      input{
-        border: 0 none;
+      input {
+        border: none;
         width: px2rem(200);
         font-size: $text-size-mid;
         line-height: px3rem(90);
         padding-left: 1em;
       }
+      input:focus {
+        border: none;
+        outline: none;
+      }
     }
-    .input-grop.active{
+    .input-grop.active {
       color: $act-color;
       border: px2rem(2) solid $act-color;
     }
