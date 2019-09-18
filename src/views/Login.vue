@@ -44,7 +44,9 @@ export default {
   data() {
     return {
       act_index: 1,
-      cm_code: ""
+      cm_code: "",
+      PNO:"",
+      passwd:""
     };
   }
 };
