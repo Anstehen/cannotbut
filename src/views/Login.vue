@@ -36,15 +36,23 @@
         />
       </div>
       <div class="ck-row">
-        <div class="ckbox_wrap">
-          <i class="iconfont icon-Multipleselection-unchecked"></i>
+        <div class="ckbox_wrap" @click="rememberClick" :class="{active: rememb}">
+          <i class="iconfont"
+             :class="{'icon-Multipleselection-unchecked':!rememb,
+             'icon-59xuanze-3':rememb}"></i>
           <span>记住密码</span>
         </div>
-        <div class="ckbox_wrap ckbox_wrap_one">
-          <i class="iconfont icon-Multipleselection-unchecked"></i>
+        <div class="ckbox_wrap ckbox_wrap_one" @click="signInClick" :class="{
+            active:autologin}">
+          <i class="iconfont "
+             :class="{'icon-Multipleselection-unchecked':!autologin,
+             'icon-59xuanze-3':autologin}"></i>
           <span>自动登录</span>
         </div>
       </div>
+    </div>
+    <div class="btn-wrap">
+      <p>登录</p>
     </div>
   </div>
 </template>
@@ -57,8 +65,25 @@ export default {
       act_index: 1,
       cm_code: "",
       PNO:"",
-      passwd:""
+      passwd:"",
+      rememb:false,
+      autologin:false
     };
+  },
+  methods:{
+    // 记住密码
+    rememberClick(){
+      let self = this;
+      self.rememb = !self.rememb;
+      self.rememb || (self.autologin = false);
+    },
+    // 自动登录
+    signInClick(){
+      let self = this;
+      self.autologin = !self.autologin;
+      // 当自动登录选中的时候，记住密码需要为选中状态
+      self.autologin && (self.rememb = true);
+    }
   }
 };
 </script>
@@ -83,12 +108,15 @@ export default {
     margin: 0 auto;
     border-radius: px2rem(18) px2rem(18) 0 0;
   }
-  .longin-box {
+  @mixin login_wrap{
     width: px2rem(680);
-    height: px2rem(836);
     margin: 0 auto;
     border-radius: px2rem(20);
     background-color: #fff;
+  }
+  .longin-box {
+    height: px2rem(836);
+    @include login_wrap();
     .login-wrap {
       padding: px2rem(80) 0;
       .login-box {
@@ -147,10 +175,22 @@ export default {
           padding-left: px2rem(5);
         }
       }
+      .ckbox_wrap.active{
+        color: $act-color;
+      }
       .ckbox_wrap_one{
         padding-left: px2rem(36);
       }
     }
+  }
+  .btn-wrap{
+    @include login_wrap();
+    height: px2rem(100);
+    margin-top: px2rem(20);
+    font-size: $text-size-import;
+    color: $act-color;
+    text-align: center;
+    line-height: px2rem(100);
   }
 }
 </style>
